@@ -1,5 +1,16 @@
 :root {
   --primary-theme-color: #ffe9ce;
+  --secondary-theme-color: #ffbe86;
+  --tertiary-theme-color: #3777ff;
+
+  --hightlight-color: #ffe156;
+  --compliment-color: #ffb5c2;
+
+  --light-color: #f6f7ef;
+  --dark-color: #1d1b1b;
+  --grey-color: #858484;
+
+  --border: solid 0.2rem #1d1b1b;
 }
 
 * {
@@ -8,10 +19,19 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem #3777ff;
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
   font-size: 1.6rem;
+  font-family: 'fields', sans-serif;
+
+  color: var(--dark-color);
+  background-color: var(--primary-theme-color);
 }
