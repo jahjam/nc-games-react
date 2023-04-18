@@ -1,8 +1,6 @@
 import * as Styled from './styles';
 
 import ReviewCard from '../ReviewCard/ReviewCard';
-import { useEffect, useState } from 'react';
-import { useRequest } from '../../hooks/use-request';
 
 type Review = {
   title: string;
@@ -15,24 +13,20 @@ type Review = {
   comment_count: number;
 };
 
-const CardContainer = () => {
-  const [reviews, setReviews] = useState<Array<Review>>([]);
+type Props = {
+  isError: boolean;
+  errorMsg: string | null;
+  isLoading: boolean;
+  reviews: Array<Review>;
+};
 
-  const { sendRequest, isError, isLoading, errorMsg } = useRequest();
-
-  useEffect(() => {
-    const res = (data: Array<Review>) => {
-      setReviews(data);
-    };
-
-    sendRequest('GET', '/reviews', res);
-  }, []);
-
+const CardContainer = ({ isError, errorMsg, isLoading, reviews }: Props) => {
   return (
     <Styled.Container direction="column">
-      {isError && <span>{errorMsg}</span>}
-      {isLoading && !isError ? (
-        <span>Loading...</span>
+      {isLoading && <span>Loading...</span>}
+
+      {isError ? (
+        <span>{errorMsg}</span>
       ) : (
         reviews.map((review, i) => (
           <ReviewCard
