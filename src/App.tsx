@@ -1,7 +1,16 @@
-import "./App.css";
+import * as Styled from './styles';
+
+import Header from './feature/Header/Header';
+import Home from './pages/Home/Home';
 
 function App() {
-  return <div></div>;
+  return (
+    <Styled.App>
+      <Header />
+
+      <Home />
+    </Styled.App>
+  );
 }
 
 export default App;
