@@ -13,14 +13,19 @@ type Review = {
   comment_count: number;
 };
 
-type Props = {
+type ContainerProps = {
   isError: boolean;
   errorMsg: string | null;
   isLoading: boolean;
   reviews: Array<Review>;
 };
 
-const CardContainer = ({ isError, errorMsg, isLoading, reviews }: Props) => {
+const CardContainer = ({
+  isError,
+  errorMsg,
+  isLoading,
+  reviews,
+}: ContainerProps) => {
   return (
     <Styled.Container direction="column">
       {isLoading && <span>Loading...</span>}
