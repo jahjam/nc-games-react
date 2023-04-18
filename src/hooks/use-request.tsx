@@ -9,7 +9,6 @@ type Props = {
 };
 
 export const useRequest = () => {
-  const [reviews, setReview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -23,8 +22,6 @@ export const useRequest = () => {
       if (method === 'GET') {
         data = await axios.get(`${API}${url}`);
       }
-
-      console.log(data);
 
       if (!data) {
         setIsLoading(false);
