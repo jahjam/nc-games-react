@@ -27,13 +27,11 @@ const Comments = ({ reviewId }: Props) => {
 
   return (
     <Styled.Comments direction="column">
-      {isError && <span>{errorMsg}</span>}
-
+      {comments && !comments.length && (
+        <span>No comments for this reviews yet!</span>
+      )}
       {isLoading && <span>Loading...</span>}
-
       {comments &&
-        !isLoading &&
-        !isError &&
         comments.map((comment, i) => (
           <CommentCard
             key={i}
@@ -43,6 +41,7 @@ const Comments = ({ reviewId }: Props) => {
             votes={comment.votes}
           />
         ))}
+      {isError && <span>{errorMsg}</span>}
     </Styled.Comments>
   );
 };
