@@ -10,3 +10,13 @@ export type Review = {
   review_id: number;
   review_body?: string;
 };
+
+export type Comment = {
+  author: string;
+  body: string;
+  comment_id?: number;
+  created_at?: Date;
+  date?: Date;
+  review_id?: number;
+  votes: number;
+};
