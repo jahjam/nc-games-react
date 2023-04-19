@@ -1,11 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import * as Styled from './styles';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleHeaderClick = () => {
+    navigate('/');
+  };
+
   return (
     <Styled.Header justify="space-between">
       <Styled.MenuIcon />
       <Styled.HeadingContainer direction="column" gap={0.2}>
-        <Styled.Heading>
+        <Styled.Heading onClick={handleHeaderClick}>
           Rer
           <Styled.DiceIcon />
           ll
