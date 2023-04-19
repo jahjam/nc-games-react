@@ -6,6 +6,8 @@ import { useRequest } from '../../hooks/use-request';
 import { Review as ReviewT } from '../../types/types';
 import { format } from 'date-fns';
 
+import Comments from '../../feature/Comments/Comments';
+
 type ResponseT = {
   review: Array<ReviewT>;
 };
@@ -52,6 +54,8 @@ const Review = () => {
         </Styled.Review>
       )}
       {isError && <span>{errorMsg}</span>}
+
+      {review && params.reviewId && <Comments reviewId={+params.reviewId} />}
     </>
   );
 };
