@@ -2,16 +2,7 @@ import * as Styled from './styles';
 
 import ReviewCard from '../ReviewCard/ReviewCard';
 
-type Review = {
-  title: string;
-  category: string;
-  designer: string;
-  owner: string;
-  review_img_url: string;
-  created_at: Date;
-  votes: number;
-  comment_count: number;
-};
+import { Review } from '../../types/types';
 
 type ContainerProps = {
   isError: boolean;
@@ -43,6 +34,7 @@ const CardContainer = ({
             numComments={review.comment_count}
             votes={review.votes}
             img={review.review_img_url}
+            reviewId={review.review_id}
           />
         ))
       )}

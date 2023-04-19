@@ -3,4 +3,6 @@ import { flex } from '../../styled-utils/mixins';
 
 export const Container = styled.div`
   ${flex}
+
+  margin-bottom: 2rem;
 `;

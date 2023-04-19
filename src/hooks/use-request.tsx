@@ -4,10 +4,6 @@ import axios from 'axios';
 
 import { API } from '../config';
 
-type Props = {
-  children: React.ReactNode;
-};
-
 export const useRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -28,7 +24,7 @@ export const useRequest = () => {
         throw data;
       }
 
-      fn(data.data.reviews);
+      fn(data.data);
     } catch (err: any) {
       setIsError(true);
       setErrorMsg(err.message);

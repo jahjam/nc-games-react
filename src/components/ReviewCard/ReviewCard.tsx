@@ -2,6 +2,8 @@ import * as Styled from './styles';
 
 import { format } from 'date-fns';
 
+import { useNavigate } from 'react-router-dom';
+
 type Props = {
   title: string;
   designer: string;
@@ -10,6 +12,7 @@ type Props = {
   numComments: number;
   votes: number;
   img: string;
+  reviewId: number;
 };
 
 const ReviewCard = ({
@@ -20,11 +23,18 @@ const ReviewCard = ({
   numComments,
   votes,
   img,
+  reviewId,
 }: Props) => {
+  const navigate = useNavigate();
+
   const formattedYear = format(createdAt, 'dd/MM/yyyy');
 
+  const handleOnClick = () => {
+    navigate(`/${reviewId}`);
+  };
+
   return (
-    <Styled.Card>
+    <Styled.Card onClick={handleOnClick}>
       <Styled.Title>{title}</Styled.Title>
       <Styled.Names direction="column" gap={0.4} align="flex-start">
         <span>Created by: {designer}</span>

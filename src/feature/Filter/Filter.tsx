@@ -1,3 +1,4 @@
+import { useRequest } from '../../hooks/use-request';
 import * as Styled from './styles';
 
 const Filter = () => {

@@ -32,6 +32,8 @@ export const Heading = styled.h1`
   text-transform: uppercase;
   letter-spacing: 0.4rem;
   line-height: 1rem;
+
+  cursor: pointer;
 `;
 
 export const DiceIcon = styled(Dice)`

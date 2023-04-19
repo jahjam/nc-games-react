@@ -5,15 +5,10 @@ import * as Styled from './styles';
 import { useEffect, useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
 
-type Review = {
-  title: string;
-  category: string;
-  designer: string;
-  owner: string;
-  review_img_url: string;
-  created_at: Date;
-  votes: number;
-  comment_count: number;
+import { Review } from '../../types/types';
+
+type ResponseT = {
+  reviews: Array<Review>;
 };
 
 const Home = () => {
@@ -22,8 +17,8 @@ const Home = () => {
   const { sendRequest, isError, isLoading, errorMsg } = useRequest();
 
   useEffect(() => {
-    const res = (data: Array<Review>) => {
-      setReviews(data);
+    const res = (data: ResponseT) => {
+      setReviews(data.reviews);
     };
 
     sendRequest('GET', '/reviews', res);
