@@ -7,6 +7,7 @@ import { Review as ReviewT } from '../../types/types';
 import { format } from 'date-fns';
 
 import Comments from '../../feature/Comments/Comments';
+import Votes from '../../feature/Votes/Votes';
 
 type ResponseT = {
   review: Array<ReviewT>;
@@ -36,6 +37,7 @@ const Review = () => {
   return (
     <>
       {isLoading && <span>Loading...</span>}
+
       {review && !isError && (
         <Styled.Review direction="column">
           <h2>{review.title}</h2>
@@ -43,6 +45,7 @@ const Review = () => {
             <Styled.Img>
               <img src={review.review_img_url} />
             </Styled.Img>
+            <Votes reviewId={params.reviewId} votes={review.votes} />
             <Styled.Info justify="space-between">
               <span>{formattedDate}</span>
               <span>By: {review.owner}</span>
@@ -53,6 +56,7 @@ const Review = () => {
           </Styled.Container>
         </Styled.Review>
       )}
+
       {isError && <span>{errorMsg}</span>}
 
       {review && params.reviewId && <Comments reviewId={+params.reviewId} />}
