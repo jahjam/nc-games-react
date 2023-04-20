@@ -71,6 +71,8 @@ export const Socials = styled.div`
 export const Map = styled.div`
   text-decoration: underline;
 
+  font-size: 1.4rem;
+
   & ul {
     list-style: none;
 
