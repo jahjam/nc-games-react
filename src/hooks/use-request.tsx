@@ -28,6 +28,10 @@ export const useRequest = () => {
         data = await axios.patch(`${API}${url}`, body);
       }
 
+      if (method === 'POST') {
+        data = await axios.post(`${API}${url}`, body);
+      }
+
       if (!data) {
         setIsLoading(false);
         throw data;
@@ -36,7 +40,7 @@ export const useRequest = () => {
       fn(data.data);
     } catch (err: any) {
       setIsError(true);
-      setErrorMsg(err.message);
+      setErrorMsg(err.response.data.error);
     }
 
     setIsLoading(false);
