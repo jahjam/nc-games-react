@@ -34,7 +34,7 @@ const ReviewCard = ({
   };
 
   return (
-    <Styled.Card onClick={handleOnClick}>
+    <Styled.Card onClick={handleOnClick} tabIndex={0}>
       <Styled.Title>{title}</Styled.Title>
       <Styled.Names direction="column" gap={0.4} align="flex-start">
         <span>Created by: {designer}</span>
