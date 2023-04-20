@@ -9,7 +9,12 @@ export const useRequest = () => {
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  const sendRequest = async (method: string, url: string, fn: Function) => {
+  const sendRequest = async (
+    method: string,
+    url: string,
+    fn: Function,
+    body: object = {}
+  ) => {
     setIsLoading(true);
     setIsError(false);
     try {
@@ -17,6 +22,10 @@ export const useRequest = () => {
 
       if (method === 'GET') {
         data = await axios.get(`${API}${url}`);
+      }
+
+      if (method === 'PATCH') {
+        data = await axios.patch(`${API}${url}`, body);
       }
 
       if (!data) {
