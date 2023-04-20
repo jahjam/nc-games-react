@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as BurgerMenu } from '../../assets/burger-menu.svg';
 import { ReactComponent as Account } from '../../assets/account.svg';
+import { ReactComponent as AccountLogin } from '../../assets/user-login.svg';
 import { ReactComponent as Dice } from '../../assets/cube.svg';
 import { flex } from '../../styled-utils/mixins';
 
@@ -59,6 +60,19 @@ export const MenuIcon = styled(BurgerMenu)`
 `;
 
 export const AccountIcon = styled(Account)`
+  height: 2.6rem;
+  width: 2.6rem;
+
+  color: var(--dark-color);
+
+  &:hover {
+    color: var(--tertiary-theme-color);
+  }
+
+  cursor: pointer;
+`;
+
+export const AccountLoginIcon = styled(AccountLogin)`
   height: 2.6rem;
   width: 2.6rem;
 
