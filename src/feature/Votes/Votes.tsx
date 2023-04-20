@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Styled from './styles';
 import { useRequest } from '../../hooks/use-request';
 import { Review } from '../../types/types';
@@ -13,24 +13,30 @@ type ResponseT = {
 };
 
 const Votes = ({ reviewId, votes }: Props) => {
-  const [addedVotes, setAddedVotes] = useState(0);
+  const [addedVotes, setAddedVotes] = useState(votes);
   const { sendRequest, isError, errorMsg } = useRequest();
 
   const handleOnDownClick = () => {
-    const res = (data: ResponseT) => {
-      setAddedVotes(data.review[0].votes);
+    if (addedVotes) {
+      setAddedVotes(addedVotes - 1);
+    }
+
+    const res = (data: ResponseT | number) => {
+      return 0;
     };
 
-    if (votes) {
-      sendRequest('PATCH', `/reviews/${reviewId}`, res, {
-        inc_votes: -1,
-      });
-    }
+    sendRequest('PATCH', `/reviews/${reviewId}`, res, {
+      inc_votes: -1,
+    });
   };
 
   const handleOnUpClick = () => {
-    const res = (data: ResponseT) => {
-      setAddedVotes(data.review[0].votes);
+    if (addedVotes) {
+      setAddedVotes(addedVotes + 1);
+    }
+
+    const res = (data: ResponseT | number) => {
+      return 0;
     };
 
     sendRequest('PATCH', `/reviews/${reviewId}`, res, { inc_votes: 1 });
@@ -40,7 +46,7 @@ const Votes = ({ reviewId, votes }: Props) => {
     <Styled.Votes gap={0.6} isError={isError}>
       {isError && <Styled.Error>{errorMsg}</Styled.Error>}
       <Styled.ThumbsUpIcon onClick={handleOnUpClick} />
-      <span>{addedVotes || votes}</span>
+      <span>{addedVotes}</span>
       <Styled.ThumbsDownIcon onClick={handleOnDownClick} />
     </Styled.Votes>
   );
