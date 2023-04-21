@@ -40,7 +40,7 @@ export const useRequest = () => {
       fn(data.data);
     } catch (err: any) {
       setIsError(true);
-      setErrorMsg(err.response.data.error);
+      setErrorMsg(err.response?.data.error || err.message);
     }
 
     setIsLoading(false);
