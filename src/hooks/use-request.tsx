@@ -40,7 +40,10 @@ export const useRequest = () => {
       fn(data.data);
     } catch (err: any) {
       setIsError(true);
-      setErrorMsg(err.response?.data.error || err.message);
+      setErrorMsg(
+        err.response?.data.error ||
+          'Oops, something went wrong. Please try again!'
+      );
     }
 
     setIsLoading(false);
