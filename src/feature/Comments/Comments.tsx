@@ -101,8 +101,6 @@ const Comments = ({ reviewId }: Props) => {
             votes={comment.votes}
           />
         ))}
-
-      {isError && <span>{errorMsg}</span>}
     </Styled.Comments>
   );
 };
