@@ -22,10 +22,10 @@ type PostResponseT = {
 const Comments = ({ reviewId }: Props) => {
   const body = useRef<HTMLTextAreaElement>(null);
   const [comments, setComments] = useState<Array<Comment>>();
+  const [commentPosted, setCommentPosted] = useState(false);
   const { sendRequest, isError, isLoading, errorMsg } = useRequest();
 
   const authContext = useContext(AuthContext);
-
   const { isLoggedIn, userDetails } = authContext;
 
   useEffect(() => {
@@ -44,7 +44,13 @@ const Comments = ({ reviewId }: Props) => {
         return [...data.comment, ...(prevComments as Comment[])];
       });
 
+      setCommentPosted(true);
+
       body!.current!.value = '';
+
+      setTimeout(() => {
+        setCommentPosted(false);
+      }, 10000);
     };
 
     const reqBody = {
@@ -63,9 +69,13 @@ const Comments = ({ reviewId }: Props) => {
           <Styled.Form onSubmit={handleSubmit} direction="column" gap={0.8}>
             <label htmlFor="body">Comment:</label>
             <textarea ref={body} id="body"></textarea>
+
             {isError && <span>{errorMsg}</span>}
+
+            {commentPosted && <p>Comment Posted!</p>}
+
             {isLoading ? (
-              <Button type="button">Loading...</Button>
+              <Button type="button">Posting...</Button>
             ) : (
               <Button type="submit">Add Comment</Button>
             )}
