@@ -25,6 +25,16 @@ export const Card = styled.div`
   align-items: center;
 
   cursor: pointer;
+
+  transition: all 0.2s ease 0s;
+
+  box-shadow: 0.2rem 0.2rem 0.6rem 0.1rem var(--grey-color);
+
+  &:hover {
+    box-shadow: 0.2rem 0.2rem 0.8rem 0.2rem var(--grey-color);
+
+    transform: scale(101%);
+  }
 `;
 
 export const Title = styled.h2`
@@ -78,6 +88,8 @@ export const Img = styled.div`
   & img {
     height: 100%;
     width: 100%;
+
+    object-fit: cover;
   }
 `;
 

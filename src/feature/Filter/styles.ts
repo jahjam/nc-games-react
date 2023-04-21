@@ -11,10 +11,10 @@ export const Container = styled.section`
 `;
 
 export const Filter = styled.div`
-  height: 5rem;
+  height: 5.2rem;
   width: 96%;
 
-  padding: 1.6rem;
+  padding: 1.6rem 2rem;
 
   background-color: var(--tertiary-theme-color);
 
@@ -23,7 +23,7 @@ export const Filter = styled.div`
   ${flex}
 
   & div {
-    height: 2.4rem;
+    height: 2.6rem;
     width: 9rem;
 
     border: var(--border);
@@ -31,10 +31,10 @@ export const Filter = styled.div`
 
     position: relative;
 
-    /* ${flex} */
+    ${flex}
 
     & input {
-      height: 2rem;
+      height: 2.2rem;
       width: 8.6rem;
 
       position: absolute;
@@ -46,7 +46,7 @@ export const Filter = styled.div`
 
       text-align: start;
       padding: 0.6rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
 
       &::placeholder {
         color: var(--grey-color);

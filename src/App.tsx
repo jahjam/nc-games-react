@@ -4,6 +4,8 @@ import Header from './feature/Header/Header';
 import Home from './pages/Home/Home';
 import Review from './pages/Review/Review';
 import Footer from './feature/Footer/Footer';
+import SignIn from './pages/Sign-In/SignIn';
+import Account from './pages/Account/Account';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Navigate replace to="/reviews" />} />
         <Route path="/reviews" element={<Home />} />
         <Route path=":reviewId" element={<Review />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/me" element={<Account />} />
       </Routes>
 
       <Footer />
