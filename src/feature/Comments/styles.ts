@@ -27,4 +27,9 @@ export const Form = styled.form`
     font-size: 1.4rem;
     color: var(--error-color);
   }
+
+  & p {
+    font-size: 1.4rem;
+    color: var(--dark-color);
+  }
 `;
