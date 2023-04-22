@@ -7,7 +7,7 @@ import { API } from '../config';
 export const useRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
   const sendRequest = async (
     method: string,
