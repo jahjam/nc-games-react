@@ -14,7 +14,7 @@ export const Filter = styled.div`
   height: 5.2rem;
   width: 96%;
 
-  padding: 1.6rem 2rem;
+  padding: 1.6rem 1rem;
 
   background-color: var(--tertiary-theme-color);
 
@@ -24,7 +24,7 @@ export const Filter = styled.div`
 
   & div {
     height: 2.6rem;
-    width: 9rem;
+    width: 12rem;
 
     border: var(--border);
     background-color: var(--light-color);
@@ -35,7 +35,7 @@ export const Filter = styled.div`
 
     & input {
       height: 2.2rem;
-      width: 8.6rem;
+      width: 11.2rem;
 
       position: absolute;
 
@@ -56,13 +56,50 @@ export const Filter = styled.div`
   }
 `;
 
-export const ArrowIcon = styled(Arrow)`
+export const MagnifyIcon = styled(Arrow)`
   height: 1.4rem;
   width: 1.4rem;
 
   position: absolute;
   top: 0.3rem;
-  left: 6.8rem;
+  left: 9rem;
 
   color: var(--grey-color);
+`;
+
+export const ListDiv = styled.div`
+  ${flex}
+  position: relative;
+`;
+
+export const List = styled.ul`
+  width: 100%;
+  height: 20rem;
+  overflow-y: scroll;
+  margin-top: -0.8rem;
+  list-style: none;
+  position: absolute;
+  top: 3rem;
+  z-index: 5;
+
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+
+  & li {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-top: var(--border);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--hightlight-color);
+    }
+  }
 `;
