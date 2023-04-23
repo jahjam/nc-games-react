@@ -13,6 +13,7 @@ type ResponseT = {
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<Array<Review>>([]);
+  const [searchInput, setSearchInput] = useState('');
   const params = useParams();
 
   const formattedCategoryTitle =
@@ -20,14 +21,25 @@ const Reviews = () => {
     params.categoryQuery[0].toUpperCase() +
       params.categoryQuery.slice(1).replaceAll('-', ' ');
 
+  const filteredResultsBasedOnSearch = reviews.filter(review =>
+    review.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   const { sendRequest, isError, isLoading, errorMsg } = useRequest();
 
+  const handleSearch = (input: string) => {
+    setSearchInput(input);
+  };
+
   const handleFilter = useCallback(
-    (sortBy: string) => {
+    (sortBy: string, order: string) => {
       let url = '/reviews';
 
-      if (params.categoryQuery)
-        url += `?category=${params.categoryQuery}&sort_by=${sortBy}`;
+      params.categoryQuery
+        ? (url += `?category=${params.categoryQuery}&sort_by=${sortBy}&order=${
+            order || 'asc'
+          }`)
+        : (url += `?sort_by=${sortBy}&order=${order || 'asc'}`);
 
       const res = (data: ResponseT) => {
         setReviews(data.reviews);
@@ -40,12 +52,12 @@ const Reviews = () => {
 
   return (
     <Styled.Category direction="column" gap={1}>
-      <Filter handleFilter={handleFilter} />
+      <Filter handleFilter={handleFilter} handleSearch={handleSearch} />
 
-      <h2>{formattedCategoryTitle}</h2>
+      <h2>{formattedCategoryTitle || 'All Reviews'}</h2>
 
       <CardContainer
-        reviews={reviews}
+        reviews={filteredResultsBasedOnSearch}
         isError={isError}
         isLoading={isLoading}
         errorMsg={
