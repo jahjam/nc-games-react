@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import CardContainer from '../../components/CardContainer/CardContainer';
 import Filter from '../Filter/Filter';
 import * as Styled from './styles';
