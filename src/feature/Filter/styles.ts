@@ -12,7 +12,7 @@ export const Container = styled.section`
 
 export const Filter = styled.div`
   height: 5.2rem;
-  width: 96%;
+  width: 90%;
 
   padding: 1.6rem 1rem;
 
@@ -35,7 +35,7 @@ export const Filter = styled.div`
 
     & input {
       height: 2.2rem;
-      width: 9.47rem;
+      width: 100%;
 
       position: absolute;
 
@@ -62,7 +62,7 @@ export const MagnifyIcon = styled(Arrow)`
 
   position: absolute;
   top: 0.3rem;
-  left: 7.6rem;
+  right: 0.4rem;
 
   color: var(--grey-color);
 `;
