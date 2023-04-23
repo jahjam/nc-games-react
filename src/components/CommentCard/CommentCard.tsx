@@ -2,6 +2,8 @@ import * as Styled from './styles';
 import { Comment } from '../../types/types';
 import { format } from 'date-fns';
 import { useRequest } from '../../hooks/use-request';
+import { useContext } from 'react';
+import AuthContext from '../../store/auth-context';
 
 const CommentCard = ({
   author,
@@ -12,6 +14,9 @@ const CommentCard = ({
   handleDelete,
 }: Comment) => {
   const { sendRequest, isError, isLoading } = useRequest();
+  const authContext = useContext(AuthContext);
+
+  const { isLoggedIn, userDetails } = authContext;
 
   const handleBinClick = () => {
     const res = () => {
@@ -30,7 +35,11 @@ const CommentCard = ({
       )}
       <div>
         <h3>{author}</h3>
-        {isLoading ? <span>...</span> : <Styled.Bin onClick={handleBinClick} />}
+        {isLoading && <span>...</span>}
+
+        {isLoggedIn && !isLoading && userDetails.username === author && (
+          <Styled.Bin onClick={handleBinClick} />
+        )}
       </div>
       <p>{body}</p>
       <div>
