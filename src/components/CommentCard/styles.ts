@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { flex } from '../../styled-utils/mixins';
 
 import { ReactComponent as VotesIcon } from '../../assets/heart.svg';
+import { ReactComponent as BinIcon } from '../../assets/bin.svg';
 
 export const CommentCard = styled.div`
   height: auto;
@@ -64,4 +65,20 @@ export const Votes = styled(VotesIcon)`
   &:hover {
     color: var(--tertiary-theme-color);
   }
+`;
+
+export const Bin = styled(BinIcon)`
+  height: 1.4rem;
+  width: 1.4rem;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--error-color);
+  }
+`;
+
+export const Error = styled.span`
+  font-size: 1.2rem;
+  color: var(--error-color);
 `;

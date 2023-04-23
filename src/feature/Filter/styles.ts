@@ -114,4 +114,8 @@ export const OrderDiv = styled.div`
   & span {
     font-size: 1rem;
   }
+
+  &:hover {
+    background-color: var(--hightlight-color);
+  }
 `;
