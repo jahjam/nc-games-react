@@ -32,6 +32,10 @@ export const useRequest = () => {
         data = await axios.post(`${API}${url}`, body);
       }
 
+      if (method === 'DELETE') {
+        data = await axios.delete(`${API}${url}`);
+      }
+
       if (!data) {
         setIsLoading(false);
         throw data;
