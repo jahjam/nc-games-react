@@ -23,8 +23,7 @@
 }
 
 *:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.2rem #3777ff;
+  outline-color: #3777ff;
 }
 
 html {
