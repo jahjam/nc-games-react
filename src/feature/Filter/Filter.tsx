@@ -132,7 +132,7 @@ const Filter = ({ handleFilter, handleSearch }: Props) => {
 
   return (
     <Styled.Container>
-      <Styled.Filter justify="space-between" gap={1.2}>
+      <Styled.Filter justify="space-around" gap={1.2}>
         <Styled.ListDiv>
           {!showCategories && <Styled.MagnifyIcon />}
           <input
@@ -184,6 +184,7 @@ const Filter = ({ handleFilter, handleSearch }: Props) => {
             type="text"
             placeholder="Search"
             onChange={handleSearchInput}
+            onBlur={handleBlur}
             onFocus={handleFocus}
           />
         </div>
