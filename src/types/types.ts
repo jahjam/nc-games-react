@@ -19,4 +19,5 @@ export type Comment = {
   date?: Date;
   review_id?: number;
   votes: number;
+  handleDelete: Function;
 };
