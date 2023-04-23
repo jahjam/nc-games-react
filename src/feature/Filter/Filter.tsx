@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
 import * as Styled from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 type Category = {
   description: string;
@@ -23,15 +23,21 @@ const sortValues = ['date', 'votes'];
 
 type Props = {
   handleFilter: Function;
+  handleSearch: Function;
 };
 
-const Filter = ({ handleFilter }: Props) => {
+const Filter = ({ handleFilter, handleSearch }: Props) => {
+  const params = useParams();
+
+  const categoryInputDefault = params.categoryQuery || '';
+
   const [showCategories, setShowCategories] = useState(false);
   const [showSort, setShowSort] = useState(false);
+  const [order, setOrder] = useState('ASC');
   const [showSearch, setShowSearch] = useState(false);
   const [categories, setCategories] =
     useState<Array<Category>>(defaultCategories);
-  const [categoryInput, setCategoryInput] = useState('');
+  const [categoryInput, setCategoryInput] = useState(categoryInputDefault);
   const [sortInput, setSortInput] = useState('');
   const categoryValue = useRef<HTMLInputElement>(null);
   const sortValue = useRef<HTMLInputElement>(null);
@@ -60,10 +66,10 @@ const Filter = ({ handleFilter }: Props) => {
     setSortInput(e.target.value);
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.relatedTarget?.nodeName === 'LI') return;
-    if (e.target.placeholder === 'Category') setShowCategories(false);
-    if (e.target.placeholder === 'Sort') setShowSort(false);
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setShowSearch(false);
+    handleSearch(e.target.value);
   };
 
   const handleCategoryItemClick = (e: any) => {
@@ -80,7 +86,14 @@ const Filter = ({ handleFilter }: Props) => {
     if (sortString === 'date') sortString = 'created_at';
 
     setSortInput(e.target.innerText);
-    handleFilter(sortString);
+    handleFilter(sortString, order?.toLowerCase());
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.relatedTarget?.nodeName === 'LI') return;
+    if (e.target.placeholder === 'Category') setShowCategories(false);
+    if (e.target.placeholder === 'Sort') setShowSort(false);
+    if (e.target.placeholder === 'Search') setShowSearch(false);
   };
 
   const handleFocus = (e: any) => {
@@ -91,6 +104,13 @@ const Filter = ({ handleFilter }: Props) => {
     if (e.target.placeholder === 'Sort') {
       setShowSort(true);
       setSortInput('');
+    }
+    if (e.target.placeholder === 'Search') {
+      setShowSearch(true);
+    }
+
+    if (e.target.textContent === 'ASC' || e.target.textContent === 'DESC') {
+      order === 'ASC' ? setOrder('DESC') : setOrder('ASC');
     }
   };
 
@@ -103,8 +123,12 @@ const Filter = ({ handleFilter }: Props) => {
   }, []);
 
   useEffect(() => {
-    handleFilter(sortValue.current?.value || 'created_at');
-  }, [handleFilter]);
+    let sortString = sortValue.current?.value;
+
+    if (sortString === 'date') sortString = 'created_at';
+
+    handleFilter(sortString || 'created_at', order?.toLowerCase());
+  }, [handleFilter, order]);
 
   return (
     <Styled.Container>
@@ -123,7 +147,7 @@ const Filter = ({ handleFilter }: Props) => {
           {showCategories && (
             <Styled.List>
               {filteredCategoryValues.map((category, i) => (
-                <li key={i} tabIndex={0} onClick={handleCategoryItemClick}>
+                <li key={i} tabIndex={i} onClick={handleCategoryItemClick}>
                   {category}
                 </li>
               ))}
@@ -144,16 +168,24 @@ const Filter = ({ handleFilter }: Props) => {
           {showSort && (
             <Styled.List>
               {filteredSortValues.map((value, i) => (
-                <li key={i} tabIndex={0} onClick={handleSortItemClick}>
+                <li key={i} tabIndex={i} onClick={handleSortItemClick}>
                   {value}
                 </li>
               ))}
             </Styled.List>
           )}
         </div>
+        <Styled.OrderDiv tabIndex={0} onClick={handleFocus}>
+          <span>{order}</span>
+        </Styled.OrderDiv>
         <div>
           {!showSearch && <Styled.MagnifyIcon />}
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={handleSearchInput}
+            onFocus={handleFocus}
+          />
         </div>
       </Styled.Filter>
     </Styled.Container>
