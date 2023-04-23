@@ -36,6 +36,11 @@ const Comments = ({ reviewId }: Props) => {
     sendRequest('GET', `/reviews/${reviewId}/comments`, res);
   }, []);
 
+  const handleDelete = (id: string) => {
+    const newState = comments?.filter(comment => comment.comment_id !== +id);
+    setComments(newState);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -99,6 +104,8 @@ const Comments = ({ reviewId }: Props) => {
             body={comment.body}
             date={new Date(comment?.created_at as Date)}
             votes={comment.votes}
+            comment_id={comment.comment_id}
+            handleDelete={handleDelete}
           />
         ))}
     </Styled.Comments>
