@@ -24,7 +24,7 @@ export const Filter = styled.div`
 
   & div {
     height: 2.6rem;
-    width: 12rem;
+    width: 10rem;
 
     border: var(--border);
     background-color: var(--light-color);
@@ -35,7 +35,7 @@ export const Filter = styled.div`
 
     & input {
       height: 2.2rem;
-      width: 11.2rem;
+      width: 9.47rem;
 
       position: absolute;
 
@@ -62,7 +62,7 @@ export const MagnifyIcon = styled(Arrow)`
 
   position: absolute;
   top: 0.3rem;
-  left: 9rem;
+  left: 7.6rem;
 
   color: var(--grey-color);
 `;
@@ -101,5 +101,17 @@ export const List = styled.ul`
     &:hover {
       background-color: var(--hightlight-color);
     }
+  }
+`;
+
+export const OrderDiv = styled.div`
+  width: 4rem !important;
+
+  cursor: pointer;
+
+  justify-content: center !important;
+
+  & span {
+    font-size: 1rem;
   }
 `;
