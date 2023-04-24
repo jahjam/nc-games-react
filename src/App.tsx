@@ -19,7 +19,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="/reviews" />} />
         <Route path="/reviews" element={<Home />} />
-        <Route path="/reviews/:categoryQuery" element={<ReviewsByCategory />} />
+        <Route
+          path="/reviews/category/:categoryQuery"
+          element={<ReviewsByCategory />}
+        />
         <Route path="/reviews/:reviewId" element={<Review />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/me" element={<Account />} />

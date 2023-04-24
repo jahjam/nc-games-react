@@ -75,7 +75,7 @@ const Filter = ({ handleFilter, handleSearch }: Props) => {
   const handleCategoryItemClick = (e: any) => {
     setShowCategories(false);
     setCategoryInput(e.target.innerText);
-    navigate(`/reviews/${e.target.innerText}`);
+    navigate(`/reviews/category/${e.target.innerText}`);
   };
 
   const handleSortItemClick = (e: any) => {
