@@ -30,7 +30,7 @@ const ReviewCard = ({
   const formattedYear = format(createdAt, 'dd/MM/yyyy');
 
   const handleOnClick = () => {
-    navigate(`/${reviewId}`);
+    navigate(`/reviews/${reviewId}`);
   };
 
   return (
