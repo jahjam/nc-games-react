@@ -19,7 +19,7 @@ const CardContainer = ({
 }: ContainerProps) => {
   return (
     <Styled.Container direction="column">
-      {isLoading && <span>Loading...</span>}
+      {isLoading && <span>Loading...<br/>(First load may take a short while, please wait.)</span>}
 
       {isError ? (
         <span>{errorMsg}</span>
