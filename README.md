@@ -1,6 +1,6 @@
 # ReRoll | Board Game Reviews
 
-Try ReRoll 👉 [HERE](https://reroll-3whu.onrender.com/reviews)
+Try ReRoll 👉 [HERE](nc-games-react.onrender.com)
 
 **What is ReRoll?**
 
